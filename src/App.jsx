@@ -1,14 +1,32 @@
-
 import './App.css'
+import Layout from "./COMPONENTS/Layout.jsx";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Hero from "./PAGES/Hero.jsx";
+import Login from "./PAGES/Login.jsx";
+
+
 
 function App() {
 
+   const router = createBrowserRouter([
+      {
+         element : <Layout/>,
+         path    : "/",
+         children: [{
+            path:"/",
+            element:<Hero/>
+         }, {
+            path   : "/login",
+            element: <Login/>
+         }]
+      },
 
-  return (
-    <>
-      <h1 className="text-orange-600">umang</h1>
-    </>
-  )
+   ])
+   return (
+
+         <RouterProvider router={router}/>
+
+   )
 }
 
 export default App
