@@ -11,7 +11,7 @@ function Login() {
          backgroundSize    : 'cover',
          backgroundPosition: 'center',
       }}>
-         <div className=" absolute bg-gradient-to-b from-black/90 via-black/40 to-black/60 inset-0 ">
+         <div className=" absolute bg-gradient-to-b from-black to-black sm:bg-gradient-to-b sm:from-black/90 sm:via-black/40 sm:to-black/60 inset-0 ">
          </div>
          {/*   Login ui */}
          <Header/>
