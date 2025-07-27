@@ -17,11 +17,17 @@ const location =useLocation();
 
 
    return (
-
-      <header className=" w-full   absolute  top-8 px-30">
-         <div className="flex justify-between ">
-            <svg viewBox="0 0 111 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                 aria-hidden="true" role="img" className="w-38  " fill="rgb(229,9,20">
+      <header className="w-full absolute top-6 sm:top-8 px-4 sm:px-10 md:px-16">
+         <div className="flex justify-between items-center">
+            <svg
+               viewBox="0 0 111 30"
+               version="1.1"
+               xmlns="http://www.w3.org/2000/svg"
+               aria-hidden="true"
+               role="img"
+               className="w-22  sm:w-36 md:w-40"
+               fill="rgb(229,9,20)"
+            >
                <g>
                   <path d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972
 						L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843
@@ -44,12 +50,16 @@ const location =useLocation();
 						 C13.5935889,28.3437998 11.906458,28.4375293 10.1246602,28.6868498 L4.78114163,12.9684132 Z"></path>
                </g>
             </svg>
-            {showOptions && <div className={`transition-all duration-500 ease-in-out overflow-hidden ${showOptions ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-               <HeaderOptions />
-            </div>
 
-            }
-
+            {showOptions && (
+               <div
+                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                     showOptions ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+               >
+                  <HeaderOptions />
+               </div>
+            )}
          </div>
       </header>
    )
