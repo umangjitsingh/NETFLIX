@@ -10,7 +10,7 @@ export function validateData(email, password ) {
 }
 
 export function validateName(name){
-   const isNameValid = /^[A-Z][a-z]+(?:[\s'-][A-Z][a-z]+)*$/.test(name);
+   const isNameValid = /^[a-zA-Z]{2,40}$/.test(name);
    if(!isNameValid) return "Name is not valid";
 
    return null;

@@ -1,24 +1,38 @@
-import React, {useEffect, useState} from 'react'
-import HeaderOptions from "./headerOptions.jsx";
-import {useLocation} from "react-router-dom";
+import React, {useState} from 'react'
+import {auth} from "../UTILS/firebase.js"
+import {useNavigate} from "react-router-dom";
+import {signOut} from "firebase/auth";
+import {useSelector} from "react-redux";
 
 
-function Header() {
-   const [showOptions,setShowOptions]=useState(true);
-const location =useLocation();
-   useEffect(() => {
 
-      if (location.pathname === '/login' || location.pathname === '/browse') {
-         setShowOptions(false)
-      } else {
-         setShowOptions(true)
-      }
-   }, [location.pathname])
+function Browse() {
+   const [logoutError, setLogOuError] = useState("");
+   const navigate = useNavigate();
+   const user=useSelector((Store)=>Store.user)
 
+   function handleSignOut() {
+      signOut(auth).then(() => {
+         navigate("/")
+      }).catch((error) => {
+         setLogOuError(error.message)
+      });
+   }
 
+   if (logoutError) {
+      return <div className="h-screen w-full bg-zinc-700 ">
+        <h1>{logoutError}</h1>
+         <h3>Oops, looks like some problem signing out, please try again</h3>
+         <button
+            onClick={handleSignOut}
+            className=" sm:scale-90 text-xs sm:text-sm bg-red-600 text-white px-4 sm:px-4 py-2 rounded tracking-tight hover:bg-red-700 selection:bg-transparent z-20">
+            Sign Out
+         </button>
+      </div>
+   }
    return (
-      <header className="w-full absolute top-6 sm:top-8 px-4 sm:px-10 md:px-16">
-         <div className="flex justify-between items-center">
+      <div className="h-screen w-full bg-zinc-700 ">
+         <div className="py-4 px-6 w-full  flex justify-between">
             <svg
                viewBox="0 0 111 30"
                version="1.1"
@@ -27,7 +41,7 @@ const location =useLocation();
                role="img"
                className="w-22  sm:w-36 md:w-40"
                fill="rgb(229,9,20)"
-            >
+                          >
                <g>
                   <path d="M105.06233,14.2806261 L110.999156,30 C109.249227,29.7497422 107.500234,29.4366857 105.718437,29.1554972
 						L102.374168,20.4686475 L98.9371075,28.4375293 C97.2499766,28.1563408 95.5928391,28.061674 93.9057081,27.8432843
@@ -51,18 +65,24 @@ const location =useLocation();
                </g>
             </svg>
 
-            {showOptions && (
-               <div
-                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                     showOptions ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-               >
-                  <HeaderOptions />
+            <div className="flex gap-3 items-center justify-between">
+               <div>
+                  <p className="text-white pr-4">welcome, {user.displayName}</p>
                </div>
-            )}
+               <div className="w-14 ">
+                  <img className="rounded-xl center cover" src={user.photoURL} alt="" />
+               </div>
+               <button
+                  onClick={handleSignOut}
+                  className=" sm:scale-90 text-xs sm:text-sm bg-red-600 text-white px-4 py-2 sm:px-4  rounded tracking-tight hover:bg-red-700 selection:bg-transparent z-20">
+                  Sign Out
+               </button>
+            </div>
+
          </div>
-      </header>
+
+      </div>
    )
 }
 
-export default Header
+export default Browse

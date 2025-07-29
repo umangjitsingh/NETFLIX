@@ -1,16 +1,26 @@
 import React, {useState} from 'react'
 import {validateData, validateName} from "../UTILS/dataValidation(Form).js";
 import {VscError} from "react-icons/vsc";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {auth} from "../UTILS/firebase.js";
+import {updateProfile} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addUser} from "../REDUX-STORE-SLICE/userSlice.js";
 
 
 function Form() {
    const [isSignInForm, setIsSignInForm] = useState(true);
+   const navigate = useNavigate();
    const [formInput, setFormInput] = useState({
       name    : "",
       email   : "",
-      password: ""
+      password: "",
+      photo   : ""
    })
    const [error, setError] = useState("");
+   const [fError, setFError] = useState("")
+const dispatch=useDispatch();
 
 
    function toggleForm() {
@@ -22,17 +32,54 @@ function Form() {
       e.preventDefault();
       if (!isSignInForm) {
          const nameError = validateName(formInput.name);
-         if(nameError){
+         if (nameError) {
             setError(nameError);
             return;
          }
       }
       const dataError = validateData(formInput.email, formInput.password);
-      if(dataError){
+      if (dataError) {
          setError(dataError);
          return;
       }
-      return null;
+      if (!isSignInForm) {
+         createUserWithEmailAndPassword(auth, formInput.email, formInput.password)
+            .then((userCredential) => {
+               const user = userCredential.user;
+               updateProfile(user, {
+                  displayName: formInput.name,
+                  photoURL   : formInput.photo
+               }).then(() => {
+                  dispatch(addUser({email:formInput.email,displayName:formInput.name,photoURL:formInput.photo}))
+                  navigate('/browse')
+               }).catch((error) => {
+                  console.log(error.message)
+
+               })
+               console.log(user)
+
+            })
+            .catch((error) => {
+               const errorMessage = error.message;
+               setFError(errorMessage);
+            });
+
+      } else {
+
+         signInWithEmailAndPassword(auth, formInput.email, formInput.password)
+            .then((userCredential) => {
+               const user = userCredential.user;
+               console.log(user)
+
+            })
+            .catch((error) => {
+               console.log(error)
+
+               const errorMessage = error.message;
+               setFError(errorMessage);
+            });
+      }
+
    }
 
    function handleDataChange(e) {
@@ -71,7 +118,7 @@ function Form() {
                   </label>
                   {error === "Name is not valid" && (
                      <p className="text-sm text-red-500 pt-1 font-light inline-flex justify-center items-center gap-1">
-                        <VscError /> {error}
+                        <VscError/> {error}
                      </p>
                   )}
                </div>
@@ -93,7 +140,7 @@ function Form() {
                </label>
                {error === "Email ID is not valid" && (
                   <p className="text-sm text-red-500 pt-1 font-light inline-flex gap-1 justify-center items-center">
-                     <VscError /> {error}
+                     <VscError/> {error}
                   </p>
                )}
             </div>
@@ -112,11 +159,14 @@ function Form() {
                   className={`text-sm text-zinc-400 absolute left-4 top-4 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:text-[10px] peer-focus:top-[6px] transition-all duration-400 font-light ${formInput.password && "text-[10px] top-[4px]"}`}>
                   Password
                </label>
+
                {error === "Password is not valid" && (
                   <p className="text-sm text-red-500 pt-1 font-light inline-flex justify-center items-center gap-1">
-                     <VscError /> {error}
+                     <VscError/> {error}
                   </p>
                )}
+
+
             </div>
 
             <button
@@ -139,8 +189,35 @@ function Form() {
       </span>
             </p>
          </div>
+         {
+            !isSignInForm && <div className="relative bg-gradient-to-r from-pink-600 via-violet-600 to-amber-600 mt-2">
+               <input
+                  className=" cursor-pointer border border-zinc-400 rounded peer focus:outline-none px-3 pt-4 pb-2 w-full text-base sm:text-lg font-normal"
+                  type="text"
+                  name="photo"
+                  value={formInput.photo}
+                  onChange={handleDataChange}
+                  placeholder=" "
+               />
+               <label
+                  htmlFor="photo"
+                  className={`flex text-sm text-zinc-900 absolute left-4 top-3 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:text-[10px] peer-focus:top-[6px] transition-all duration-400 font-semibold ${formInput.name && "text-[10px] tracking-wide top-[4px]"}`}>
+                  Enter a photo
+                  URL <div className="text-2xl pl-4 h-8 animate-bounce">🤖</div>
+
+               </label>
+            </div>
+         }
+
+
+         <div className="h-18 w-full bg-clip-text bg-gradient-to-b from-red-600 via-orange-600 to-red-600 animate-wiggle
+         ">
+            <p className="text-[14.4px] text-transparent pt-8 text-center font-semibold ">{fError}</p>
+
+         </div>
+
       </div>
    )
 }
 
-export default Form
+export default Form;
