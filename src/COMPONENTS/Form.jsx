@@ -50,7 +50,8 @@ const dispatch=useDispatch();
                   displayName: formInput.name,
                   photoURL   : formInput.photo
                }).then(() => {
-                  dispatch(addUser({email:formInput.email,displayName:formInput.name,photoURL:formInput.photo}))
+                  const {uid,email,displayName,photoURL}=auth.currentUser;
+                  dispatch(addUser({uid,email,displayName,photoURL}))
                   navigate('/browse')
                }).catch((error) => {
                   console.log(error.message)
