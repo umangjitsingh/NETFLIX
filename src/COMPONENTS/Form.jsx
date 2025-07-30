@@ -4,14 +4,14 @@ import {VscError} from "react-icons/vsc";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../UTILS/firebase.js";
 import {updateProfile} from "firebase/auth";
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addUser} from "../REDUX-STORE-SLICE/userSlice.js";
 
 
 function Form() {
    const [isSignInForm, setIsSignInForm] = useState(true);
-   const navigate = useNavigate();
+   // const navigate = useNavigate();
    const [formInput, setFormInput] = useState({
       name    : "",
       email   : "",
@@ -47,12 +47,12 @@ const dispatch=useDispatch();
             .then((userCredential) => {
                const user = userCredential.user;
                updateProfile(user, {
-                  displayName: formInput.name,
-                  photoURL   : formInput.photo
+                  displayName: formInput?.name,
+                  photoURL   : formInput?.photo
                }).then(() => {
                   const {uid,email,displayName,photoURL}=auth.currentUser;
                   dispatch(addUser({uid,email,displayName,photoURL}))
-                  navigate('/browse')
+                  // navigate('/browse')
                }).catch((error) => {
                   console.log(error.message)
 

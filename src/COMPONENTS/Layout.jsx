@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
 import Footer from "./Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
@@ -10,18 +10,23 @@ import {addUser, removeUser} from "../REDUX-STORE-SLICE/userSlice.js";
 function Layout() {
 const dispatch=useDispatch();
 const navigate=useNavigate();
+	const [checkingAuth, setCheckingAuth] = useState(true);
+
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-			const{uid,email,displayName,photoURL}=user;
-			dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}));
-			navigate("/browse")
+				const { uid, email, displayName, photoURL } = user;
+				dispatch(addUser({ uid, email, displayName, photoURL }));
+				navigate("/browse");
 			} else {
 				dispatch(removeUser());
-				navigate("/")
+				navigate("/");
 			}
+			setCheckingAuth(false);
 		});
-	}, [dispatch]);
+	}, [dispatch, navigate]);
+
+	if (checkingAuth) return <p>Checking credentials...</p>;
 	return (<div >
 			<Outlet/>
 			<Footer/>

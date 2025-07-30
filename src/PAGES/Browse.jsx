@@ -2,18 +2,22 @@ import React, {useState} from 'react'
 import {auth} from "../UTILS/firebase.js"
 import {useNavigate} from "react-router-dom";
 import {signOut} from "firebase/auth";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {removeUser} from "../REDUX-STORE-SLICE/userSlice.js";
 
 
 
 function Browse() {
    const [logoutError, setLogOuError] = useState("");
-   const navigate = useNavigate();
-   const user=useSelector((Store)=>Store.user)
+   // const navigate = useNavigate();
+   const user=useSelector((Store)=>Store.user);
+   const dispatch=useDispatch();
 
    function handleSignOut() {
+
       signOut(auth).then(() => {
-         navigate("/")
+         dispatch(removeUser())
+         // navigate("/")
       }).catch((error) => {
          setLogOuError(error.message)
       });
@@ -67,7 +71,7 @@ function Browse() {
 
             <div className="flex gap-3 items-center justify-between">
                <div>
-                  <p className="text-white pr-4">welcome, {user.displayName}</p>
+                  <p className="text-white pr-4">welcome, {user.displayName.slice(0,1).toUpperCase()}{user.displayName.slice(1).toLowerCase()}</p>
                </div>
                <div className="w-14 ">
                   <img className="rounded-xl center cover" src={user.photoURL} alt="" />
