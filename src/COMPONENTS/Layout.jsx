@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+ import React, {useEffect, useState} from 'react'
 import {Outlet, useNavigate} from "react-router-dom";
 import Footer from "./Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,7 +13,7 @@ const navigate=useNavigate();
 	const [checkingAuth, setCheckingAuth] = useState(true);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
+		const unsubscribe=onAuthStateChanged(auth, (user) => {
 			if (user) {
 				const { uid, email, displayName, photoURL } = user;
 				dispatch(addUser({ uid, email, displayName, photoURL }));
@@ -24,6 +24,8 @@ const navigate=useNavigate();
 			}
 			setCheckingAuth(false);
 		});
+
+		return ()=> unsubscribe();
 	}, [dispatch, navigate]);
 
 	if (checkingAuth) return <p>Checking credentials...</p>;

@@ -1,11 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
     --font-headline:"Mukta", sans-serif;
-    --font-inter:"Inter", sans-serif;
+    --font-movie0:"Luckiest Guy", cursive;
+    --font-movie2:"Viga", sans-serif;
+
 
     --animate-wiggle: wiggle 1s ease-in-out infinite;
     @keyframes wiggle {    0%,    100% {      transform: rotate(-0.6deg);    }    50% {      transform: rotate(0.6deg);    }  }
+
+    --animate-color:colorShift 10s ease-in-out infinite;
+    @keyframes colorShift {
+        0% { color: #d1fddc; }
+        50% { color: #ffb49f; }
+        100% { color: #d7d7fa; }
+    }
 }
+
+
+
+
+
