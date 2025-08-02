@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {FaInfo, FaPlay} from "react-icons/fa";
 
-
-
 function VideoTitle({title, overview}) {
 
    const [index, setIndex] = useState(0);
@@ -15,10 +13,8 @@ function VideoTitle({title, overview}) {
       return () => clearInterval(interval);
    }, [fontOptions.length]);
 
-
-
    return (
-      <div className=" absolute top-[20%]  left-[4%] z-40 py-2 ">
+      <div className=" absolute top-[160px]  left-[6%] z-10 py-2  scale-90">
          <h1 className={`text-6xl [text-shadow:_12px_12px_18px_rgb(1_2_41_/_0.9)] font-bold ${fontOptions[index]} text-red-100 tracking-tighter`}>{title}</h1>
          <p className=" w-[42%] py-6 font-headline  text-lg text-zinc-50">{overview}</p>
          <div className="flex items-center gap-2">

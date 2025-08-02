@@ -15,17 +15,19 @@ function VideoBackground({movieId}) {
    const BACKGROUND_TRAILER_URL = `https://www.youtube.com/embed/${youtubeKey}?&autoplay=1&mute=1&controls=0&modestbranding=0&rel=0&showinfo=0`;
 
    return (
-      < >
-         <iframe
-            className="w-full aspect-video "
-            src={BACKGROUND_TRAILER_URL}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen></iframe>
-         <div className="w-full h-full absolute bg-gradient-to-r from-black/90 from-0% via-black/50 via-50% to-transparent to-100% top-0"></div>
-      </>
-
-   )
+      <div className="w-full">
+         <div className="relative aspect-video w-full">
+            <iframe
+               className="w-full h-full"
+               src={BACKGROUND_TRAILER_URL}
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerPolicy="strict-origin-when-cross-origin"
+               allowFullScreen
+            ></iframe>
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent"></div>
+         </div>
+      </div>
+   );
 }
 
 export default VideoBackground

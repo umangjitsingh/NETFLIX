@@ -1,18 +1,22 @@
 import BrowseHeader from "../COMPONENTS/BrowseHeader.jsx";
-import useRecentMovies from "../HOOKS/useRecentMovies.js";
+
 import MainContainer from "../COMPONENTS/MainContainer.jsx";
+import SecondaryContainer from "../COMPONENTS/SecondaryContainer.jsx";
+import useMovies from "../HOOKS/useMovies.js";
 
 
 function Browse() {
-   useRecentMovies()
+   useMovies('now_playing')
    return (
-      <div className="w-full min-h-screen  relative">
+      <div className="w-full  relative scroll-smooth">
          <BrowseHeader/>
-         <div className="w-full h-fit  ">
+         <div >
             <MainContainer/>
          </div>
 
-         <div className="w-full h-screen bg-teal-800"></div>
+         <div className=" w-full min-h-screen  bg-gradient-to-br from-zinc-950 to-zinc-800 ">
+            <SecondaryContainer/>
+         </div>
 
 
       </div>);

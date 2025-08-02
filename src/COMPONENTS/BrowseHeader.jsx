@@ -13,7 +13,7 @@ function BrowseHeader() {
 
    function handleBackgroundColorOnScroll() {
       const currentPosition=scrollY;
-      const quarterPage=document.body.scrollHeight/8;
+      const quarterPage=document.body.scrollHeight/19;
 
       setBgDark(currentPosition > quarterPage)
    }
@@ -45,15 +45,15 @@ function BrowseHeader() {
    }
 
    return (
-   <div className={`h-20 w-full  fixed top-0 z-40 ${bgDark ? "z-50 bg-gradient-to-b from-black from-0% via-black/80 via-70% to-transparent to-100% " : "bg-gradient-to-b from-black/70 via-black/70 to-transparent"}`}>
-      <div className="py-2 px-6 w-full  flex justify-between">
+   <div className={`h-20 w-full  fixed top-0 z-40 ${bgDark ? "z-50 bg-gradient-to-b  from-black from-0% via-black/70 via-60% to-transparent to-100% " : "bg-gradient-to-b from-black/70 via-black/40 to-transparent"}`}>
+      <div className="py-2 h-16 px-6 w-full   flex justify-between">
          <svg
             viewBox="0 0 111 30"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             role="img"
-            className="w-10  sm:w-26 md:w-30"
+            className=" z-40 w-10  sm:w-26 md:w-30 bg-black/80 p-3 rounded"
             fill="rgb(229,9,20)"
          >
             <g>
