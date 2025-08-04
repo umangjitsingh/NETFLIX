@@ -14,9 +14,9 @@ function VideoTitle({title, overview}) {
    }, [fontOptions.length]);
 
    return (
-      <div className=" absolute top-[160px]  left-[6%] z-10 py-2  scale-90">
+      <div className=" absolute top-[160px]  left-[6%] z-10 py-2  scale-90  max-h-90 ">
          <h1 className={`text-6xl [text-shadow:_12px_12px_18px_rgb(1_2_41_/_0.9)] font-bold ${fontOptions[index]} text-red-100 tracking-tighter`}>{title}</h1>
-         <p className=" w-[42%] py-6 font-headline  text-lg text-zinc-50">{overview}</p>
+         <p className=" max-w-[60%] py-6  font-headline text-lg text-zinc-50 break-words">{overview}</p>
          <div className="flex items-center gap-2">
             <button className="hover:bg-white/80 bg-white font-semibold text-black  px-6 py-2 rounded inline-flex justify-center items-center gap-2">
                <span><FaPlay/></span>Play

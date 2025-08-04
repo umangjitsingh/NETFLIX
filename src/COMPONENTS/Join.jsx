@@ -1,7 +1,10 @@
 import {IoIosArrowForward} from "react-icons/io";
+import { lang } from '../../CONSTANTS/language.js';
+import { useSelector } from 'react-redux';
 
 
 function Join() {
+   const currentLanguage=useSelector(store=>store.language.lang)
    return (
 
 
@@ -9,13 +12,13 @@ function Join() {
          <div className="flex items-center justify-center text-center w-full h-full px-4 sm:px-8 md:px-16">
             <div className="max-w-2xl">
                <h1 className="text-3xl sm:text-5xl md:text-6xl font-headline font-extrabold leading-tight">
-                  Unlimited movies, TV <br /> shows, and more
+                  {lang[currentLanguage].banner}
                </h1>
                <h4 className="pt-3 text-base sm:text-lg font-semibold font-headline">
-                  Starts at $7.99. Cancel anytime.
+                  {lang[currentLanguage].pricing}
                </h4>
                <p className="pt-6 text-sm sm:text-base">
-                  Ready to watch? Enter your email to create or restart your membership.
+                  {lang[currentLanguage].line1}
                </p>
 
                <div className="pt-6 flex flex-col sm:flex-row items-center gap-3">

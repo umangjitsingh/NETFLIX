@@ -11,10 +11,10 @@ function SecondaryContainer() {
    useMovies('upcoming');
 
 
-   const {top_rated,popular,now_playing,upcoming,latest}=useSelector(store=>store?.movie)
+   const {top_rated,popular,now_playing,upcoming}=useSelector(store=>store?.movie)
 
    return (
-      <div  className="relative -translate-y-[400px] z-40">
+      <div  className="relative -translate-y-[380px] z-40">
 
          <MovieList genre={top_rated} name={'top rated'}/>
          <MovieList genre={popular} name={'popular'}/>

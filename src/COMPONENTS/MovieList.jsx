@@ -5,16 +5,16 @@ import {POSTER_PATH} from "../../CONSTANTS/constants.js";
 function MovieList({ genre, name }) {
 
    return (
-      <div className=" text-white px-4 w-full  z-30 scale-90">
+      <div className=" text-white px-2 w-full bg- z-30 scale-90">
          <section aria-label={name} className="py-8 border-b-1 border-zinc-800">
             <h2 className="pl-6 text-2xl font-inter pb-2 font-semibold capitalize">{name}</h2>
             <div className="px-4 w-full flex items-center gap-2 mb-8 overflow-x-scroll scrollbar-custom mx-auto rounded-md" >
 
-               <ul className="flex gap-3 justify-center px-2 flex-nowrap">
+               <ul className="flex gap-4 justify-between   flex-nowrap">
                   {genre?.map((currItem) => (
-                     <li className="max-w-64 min-w-56 h-60 shrink-0" key={currItem.id}>
+                     <li className=" border-2 border-zinc-600 max-w-72 min-w-52 h-56 shrink-0 cursor-pointer shadow-2xl rounded-md" key={currItem.id}>
                         <img
-                           className="rounded-sm w-full h-full object-cover center"
+                           className=" w-full h-full object-cover center  "
                            src={POSTER_PATH + currItem.poster_path}
                            alt=""
                         />

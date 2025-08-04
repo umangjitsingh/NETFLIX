@@ -3,6 +3,9 @@ import {auth} from "../UTILS/firebase.js"
 import {signOut} from "firebase/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {removeUser} from "../REDUX-STORE-SLICE/userSlice.js";
+import { RiCameraLensAiFill } from 'react-icons/ri';
+import { toggleGptUI } from '../REDUX-STORE-SLICE/gptSlice.js';
+import Language from './Language.jsx';
 
 
 function BrowseHeader() {
@@ -10,6 +13,7 @@ function BrowseHeader() {
    const [bgDark, setBgDark] = useState(false);
    const user = useSelector((Store) => Store.user);
    const dispatch = useDispatch();
+   const blurHeader=useSelector(store=>store.gpt.toggleGptUI)
 
    function handleBackgroundColorOnScroll() {
       const currentPosition=scrollY;
@@ -44,8 +48,12 @@ function BrowseHeader() {
       </div>
    }
 
+   function handleGpt() {
+      dispatch(toggleGptUI())
+   }
+
    return (
-   <div className={`h-20 w-full  fixed top-0 z-40 ${bgDark ? "z-50 bg-gradient-to-b  from-black from-0% via-black/70 via-60% to-transparent to-100% " : "bg-gradient-to-b from-black/70 via-black/40 to-transparent"}`}>
+   <div className={`h-20 w-full  fixed top-0 z-40 ${bgDark ? "z-50 bg-gradient-to-b  from-black from-0% via-black/70 via-60% to-transparent to-100% " : "z-50 bg-gradient-to-b from-black/70 via-black/40 to-transparent"}`}>
       <div className="py-2 h-16 px-6 w-full   flex justify-between">
          <svg
             viewBox="0 0 111 30"
@@ -79,18 +87,25 @@ function BrowseHeader() {
             </g>
          </svg>
 
-         <div className="flex gap-3 items-center justify-between">
-            <div>
-               <p className="font-headline text-white pr-4">welcome, {user?.displayName?.slice(0, 1).toUpperCase()}{user?.displayName?.slice(1).toLowerCase()}</p>
+         <div className="flex gap-3 items-center justify-between ">
+            <div className={`${blurHeader ?"opacity-20" : "opacity-100"}`}>
+               <p className="font-headline text-white pr-1">welcome, {user?.displayName?.slice(0, 1).toUpperCase()}{user?.displayName?.slice(1).toLowerCase()}</p>
             </div>
-            <div className="w-12 ">
+            <div className={`${blurHeader ?"opacity-20 w-12" : "opacity-100 w-12"}`}>
                <img className="rounded-xl center cover" src={user.photoURL} alt=""/>
             </div>
             <button
                onClick={handleSignOut}
-               className=" sm:scale-90 text-xs sm:text-sm bg-red-600 text-white px-4 py-2 sm:px-4  rounded tracking-tight hover:bg-red-700 selection:bg-transparent z-20">
+               className= {`${blurHeader ? "opacity-20 sm:scale-90 text-xs sm:text-sm bg-red-600 text-white px-4 py-2 sm:px-4  rounded tracking-tight hover:bg-red-700 selection:bg-transparent z-20 " : "sm:scale-90 text-xs sm:text-sm bg-red-600 text-white px-4 py-2 sm:px-4  rounded tracking-tight hover:bg-red-700 selection:bg-transparent z-20"}`}>
                Sign Out
             </button>
+            {blurHeader && <Language/>}
+            <button onClick={handleGpt} className="  hover:bg-zinc-900 flex ml-12 gap-3 items-center sm:scale-90 text-xs sm:text-sm bg-zinc-800 text-white px-4 py-2 sm:px-4 rounded mr-3 tracking-tight selection:bg-transparent z-20 border border-white/20 backdrop-blur-md shadow-[0_0_8px_#f4fcf6,0_0_16px_#eff899] hover:shadow-[0_0_12px_#7c3aed,0_0_20px_#f4f206] transition-all duration-300">
+               <span className="text-xs">GPT</span>
+               <span className={`${blurHeader ? "text-amber-300 text-base " : "animate-bounce text-amber-300 text-base duration-1000"}`}><RiCameraLensAiFill /></span>
+            </button>
+
+
          </div>
 
       </div>
