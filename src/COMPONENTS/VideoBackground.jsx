@@ -17,13 +17,11 @@ function VideoBackground({movieId}) {
    return (
       <div className="w-full">
          <div className="relative  max-w-full">
-            <iframe
-               className=" w-full h-full aspect-video -translate-y-[17%]"
-               src={BACKGROUND_TRAILER_URL}
-               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-               referrerPolicy="strict-origin-when-cross-origin"
-               allowFullScreen
-            ></iframe>
+            {/*<iframe*/}
+            {/*   className=" w-full h-full aspect-video -translate-y-[17%]"*/}
+            {/*   src={BACKGROUND_TRAILER_URL}*/}
+            {/*   allowFullScreen*/}
+            {/*></iframe>*/}
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
          </div>
       </div>

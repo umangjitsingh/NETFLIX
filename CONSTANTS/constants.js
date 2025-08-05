@@ -1,3 +1,9 @@
+import {InferenceClient} from "@huggingface/inference";
+import accessToken from "../hugging.js";
+
+
+
+
 export const HERO_BG_IMG ="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/CA-en-20250721-TRIFECTA-perspective_26e23158-236f-425e-941d-3c8f37bdd62b_large.jpg"
 
 export const MOVIES_URL = 'https://api.themoviedb.org/3/movie/';
@@ -10,6 +16,12 @@ export const API_OPTIONS = {
    }
 };
 
-export const POSTER_PATH ="https://image.tmdb.org/t/p/w500"
+export const POSTER_PATH ="https://image.tmdb.org/t/p/w500";
+
+export const client = new InferenceClient(accessToken)
+
+
+
+
 
 
