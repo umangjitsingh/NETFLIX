@@ -24,5 +24,5 @@ export const useTrailer_KEY = (movieId) => {
 
    useEffect(() => {
       getTrailer();
-   }, [movieId, dispatch, getTrailer]);
+   }, [movieId]);
 };

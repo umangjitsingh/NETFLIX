@@ -15,16 +15,16 @@ function VideoBackground({movieId}) {
    const BACKGROUND_TRAILER_URL = `https://www.youtube.com/embed/${youtubeKey}?&autoplay=1&mute=1&controls=0&modestbranding=0&rel=0&showinfo=0`;
 
    return (
-      <div className="w-full">
-         <div className="relative  max-w-full">
+
+         <div className="w-screen  h-full ">
             {/*<iframe*/}
-            {/*   className=" w-full h-full aspect-video -translate-y-[17%]"*/}
+            {/*   className="w-screen  aspect-video  "*/}
             {/*   src={BACKGROUND_TRAILER_URL}*/}
             {/*   allowFullScreen*/}
             {/*></iframe>*/}
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+            {/*<div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>*/}
          </div>
-      </div>
+
    );
 }
 

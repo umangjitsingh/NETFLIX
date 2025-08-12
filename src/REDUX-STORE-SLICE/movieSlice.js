@@ -8,7 +8,6 @@ const movieSlice=createSlice({
       popular:null,
       top_rated:null,
       upcoming:null,
-
       trailer:null
    },
    reducers:{

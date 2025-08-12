@@ -14,7 +14,7 @@ function SecondaryContainer() {
    const {top_rated,popular,now_playing,upcoming}=useSelector(store=>store?.movie)
 
    return (
-      <div  className="relative -translate-y-[380px] z-40">
+      <div  className="  relative -translate-y-[380px] z-40">
 
          <MovieList genre={top_rated} name={'top rated'}/>
          <MovieList genre={popular} name={'popular'}/>

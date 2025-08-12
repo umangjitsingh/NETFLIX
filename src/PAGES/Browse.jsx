@@ -3,37 +3,32 @@ import MainContainer from "../COMPONENTS/MainContainer.jsx";
 import SecondaryContainer from "../COMPONENTS/SecondaryContainer.jsx";
 import useMovies from "../HOOKS/useMovies.js";
 import GPT from '../COMPONENTS/GPT.jsx';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
+import React from "react";
+import GptSearchContainer from "../COMPONENTS/GptSearchContainer.jsx";
 
 
 function Browse() {
-	useMovies('now_playing')
-	const toggleGpt = useSelector(store => store.gpt.toggleGptUI);
+   useMovies('now_playing')
+   const toggleGpt = useSelector(store => store.gpt.toggleGptUI);
+   const AIMovies = useSelector(store => store.gpt.AIResults)
 
-	return (
-		<div className="w-full  relative scroll-smooth">
-			<BrowseHeader/>
+   return (
+      <div className="w-full bg-black/90 relative scroll-smooth">
+         <BrowseHeader/>
+         {toggleGpt ? <>
+            <GPT/>{AIMovies ? <GptSearchContainer/> :
+            <>
+               <MainContainer/>
+               <SecondaryContainer/>
+            </>
+            }
+         </> : <>
+            <MainContainer/>
+            <SecondaryContainer/>
+         </>}
 
-			{toggleGpt ? <div>
-				<GPT/>
-				<div className="relative border-t-[70px] border-zinc-900">
-					<MainContainer/>
-				</div>
-
-				<div className=" w-full min-h-screen  bg-gradient-to-br from-zinc-950 to-zinc-800  ">
-					<SecondaryContainer/>
-				</div>
-			</div> : <>
-				<div>
-					<MainContainer/>
-				</div>
-
-				<div className=" w-full min-h-screen  bg-gradient-to-br from-zinc-950 to-zinc-800 ">
-					<SecondaryContainer/>
-				</div>
-			</>}
-
-		</div>);
+      </div>);
 }
 
 export default Browse;

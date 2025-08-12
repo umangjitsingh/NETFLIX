@@ -92,7 +92,7 @@ function BrowseHeader() {
                <p className="font-headline text-white pr-1">welcome, {user?.displayName?.slice(0, 1).toUpperCase()}{user?.displayName?.slice(1).toLowerCase()}</p>
             </div>
             <div className={`${blurHeader ?"opacity-20 w-12" : "opacity-100 w-12"}`}>
-               <img className="rounded-xl center cover" src={user.photoURL} alt=""/>
+               <img className="rounded-xl center cover" src={user?.photoURL} alt=""/>
             </div>
             <button
                onClick={handleSignOut}
