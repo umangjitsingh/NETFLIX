@@ -6,6 +6,7 @@ import Login from "./PAGES/Login.jsx";
 import {Provider} from "react-redux";
 import appStore from "./REDUX-STORE-SLICE/appStore.js";
 import Browse from "./PAGES/Browse.jsx";
+import Play from "./PAGES/Play.jsx";
 
 
 
@@ -25,7 +26,12 @@ function App() {
             {
                path   : "/browse",
                element: <Browse/>
-            }]
+            },
+            {
+               path:'/play',
+               element:<Play/>
+            }
+         ]
       },
 
    ])

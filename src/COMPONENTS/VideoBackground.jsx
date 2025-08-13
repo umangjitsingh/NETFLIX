@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 function VideoBackground({movieId}) {
    useTrailer_KEY(movieId);
-
+   const gptTrailerId =useSelector(store=>store.gpt.gptTrailerId)
    const youtubeKey = useSelector((store) => store.movie.trailer);
 
 
@@ -17,13 +17,13 @@ function VideoBackground({movieId}) {
 
    return (
 
-         <div className="w-screen  h-full ">
+         <div className= "w-lvw  h-full" >
             <iframe
-               className="w-screen  aspect-video  "
+               className= {`${gptTrailerId ? "rounded-2xl w-full aspect-video" : "w-full aspect-video"}`}
                src={BACKGROUND_TRAILER_URL}
                allowFullScreen
             ></iframe>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-transparent"></div>
+            <div className={`${gptTrailerId ? "" :"absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-transparent"}`}></div>
          </div>
 
    );

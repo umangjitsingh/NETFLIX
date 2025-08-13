@@ -22,7 +22,7 @@ export const useTMDBSearch = () => {
             const responses = await Promise.all(promiseArray);
             const allResults = responses.map(res => res.data.results.filter((m)=>['hi','en','pa'].includes(m.original_language)));
             const best_results=allResults.map((movie)=>movie[0])
-            console.log(best_results)
+
 
             dispatch(addBest_TMDB(best_results))
 

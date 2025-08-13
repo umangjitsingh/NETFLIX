@@ -6,7 +6,8 @@ const gptSlice=createSlice({
 	initialState:{
 		toggleGptUI:false,
       AIResults:null,
-      best_TMDB:null
+      best_TMDB:null,
+      gptTrailerId:null
 	},
 	reducers:{
 		toggleGptUI:(state)=>{
@@ -17,9 +18,12 @@ const gptSlice=createSlice({
       },
       addBest_TMDB:(state,action)=>{
          state.best_TMDB=action.payload;
+      },
+      addGptTrailerId:(state,action)=>{
+         state.gptTrailerId=action.payload;
       }
 	}
 })
 
-export const {toggleGptUI,addAIResults,addBest_TMDB}=gptSlice.actions;
+export const {toggleGptUI,addAIResults,addBest_TMDB,addGptTrailerId}=gptSlice.actions;
 export default gptSlice.reducer;

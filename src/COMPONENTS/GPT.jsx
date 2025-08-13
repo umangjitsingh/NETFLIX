@@ -8,7 +8,7 @@ import { HERO_BG_IMG } from '../../CONSTANTS/constants.js';
 function Gpt() {
 	return (
 
-		<div className="relative w-full h-[calc(100vh+400px)] bg-cover bg-center "
+		<div className="relative w-full h-[240vh]  bg-cover bg-center overflow-auto "
 			style={{ backgroundImage: `url(${HERO_BG_IMG})` }}>
 			<div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/30"/>
 			<GptSearch/>
