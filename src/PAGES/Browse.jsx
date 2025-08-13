@@ -23,10 +23,10 @@ function Browse() {
                <SecondaryContainer/>
             </>
             }
-         </> : <>
+         </> : <div className="-translate-y-[6%]">
             <MainContainer/>
             <SecondaryContainer/>
-         </>}
+         </div>}
 
       </div>);
 }

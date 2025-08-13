@@ -22,7 +22,9 @@ function GptSearch() {
          return;
       }
 
-      const OPTIMISED_SEARCH_QUERY = `I am making a movie webapp, in which user can search a movie using AI. This is the user's search query: "${userSearchedQuery}". Please provide me not more than 4 movie results each time, comma seperated. Here is the example of results : 'Hera Pheri, 'Don', 'Chal Mera Putt', 'Shareek'`;
+      const OPTIMISED_SEARCH_QUERY = `I am making a movie webapp, in which user can search a movie using AI.
+       This is the user's search query: "${userSearchedQuery}". Please provide me not more than 8 movie results each time, comma seperated.
+        Here is the example of results : 'Hera Pheri, 'Don', 'Chal Mera Putt', 'Shareek', 'Super 30', 'Darr', 'Dharti', 'Gelo'`;
 
       try {
          const getResults = await client.chatCompletion({

@@ -5,8 +5,8 @@ import {POSTER_PATH} from "../../CONSTANTS/constants.js";
 function MovieList({ genre, name }) {
 
    return (
-      <div className=" text-white px-2 w-full bg- z-30 scale-90">
-         <section aria-label={name} className="py-8 border-b-1 border-zinc-800">
+      <div className=" text-white w-full  z-30 scale-80">
+         <section aria-label={name} className=" mt-18 border-b-1 border-zinc-800">
             <h2 className="pl-6 text-2xl font-inter pb-2 font-semibold capitalize">{name}</h2>
             <div className="px-4 w-full flex items-center gap-2 mb-8 overflow-x-scroll scrollbar-custom mx-auto rounded-md" >
 

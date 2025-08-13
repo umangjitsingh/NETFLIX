@@ -7,7 +7,7 @@ import VideoBackground from "./VideoBackground.jsx";
 function MainContainer() {
    const movies = useSelector(store => store?.movie?.upcoming);
    if (!movies) return;
-   const mainMovie = movies[8];
+   const mainMovie = movies[9];
 
 const {original_title,overview,id}=mainMovie;
    return (
